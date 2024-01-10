@@ -1,6 +1,8 @@
-# Recommendation System in Python
+# Recommendation Systems in Python
 
-Simple recommendation system.
+[![build](https://github.com/paulocoutinhox/py-recommendation/actions/workflows/build.yml/badge.svg)](https://github.com/paulocoutinhox/py-recommendation/actions/workflows/build.yml)
+
+Simple recommendation systems written in Python.
 
 ## How to use
 
