@@ -1,0 +1,4 @@
+pygemstones>=0.0.13
+numpy
+pandas
+scikit-learn
