@@ -15,7 +15,7 @@ python3 main.py
 
 - [x] Implement kNN
 - [ ] Separate into different algorithms
-- [ ] Refactor code
+- [x] Refactor code
 
 ## References
 
