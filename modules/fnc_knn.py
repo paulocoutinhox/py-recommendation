@@ -3,6 +3,7 @@ from pygemstones.util import log as l
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
+from modules import fnc_general as fgen
 from modules.cl_recommendation import Recommendation
 
 
@@ -11,17 +12,22 @@ def create_matrix(df):
     n = len(df["user_id"].unique())  # number of unique users
     m = len(df["product_id"].unique())  # number of unique products
 
-    # map user and product ids to unique indices
-    user_mapper = dict(zip(np.unique(df["user_id"]), list(range(n))))
-    product_mapper = dict(zip(np.unique(df["product_id"]), list(range(m))))
+    # get unique data from dataframe
+    unique_users = np.unique(df["user_id"])
+    unique_products = np.unique(df["product_id"])
+
+    # map user and product ids
+    user_mapper = dict(zip(unique_users, range(n)))
+    product_mapper = dict(zip(unique_products, range(m)))
 
     # map indices back to user and product ids
-    user_inv_mapper = dict(zip(list(range(n)), np.unique(df["user_id"])))
-    product_inv_mapper = dict(zip(list(range(m)), np.unique(df["product_id"])))
+    user_inv_mapper = dict(zip(range(n), unique_users))
+    product_inv_mapper = dict(zip(range(m), unique_products))
 
-    # create a sparse user-item matrix
+    # create a sparse user-item matrix (sparse matrix is optimized to don't store null values)
     user_index = [user_mapper[i] for i in df["user_id"]]
     product_index = [product_mapper[i] for i in df["product_id"]]
+
     X = csr_matrix((df["rating"], (product_index, user_index)), shape=(m, n))
 
     return X, user_mapper, product_mapper, user_inv_mapper, product_inv_mapper
@@ -56,17 +62,18 @@ def find_similar_products(
 
     # extract neighbor information
     for i in range(1, k):
+        # neighbour
+        n = neighbour[1][0][i]
+        distance = neighbour[0][0][i]
+        product_id = product_inv_mapper[n]
+
         # product title
         product_title = product_titles.get(product_id, "product-not-found")
 
         if product_title == "product-not-found":
             l.e(f"Product with ID {product_id} not found.")
 
-        # neighbour
-        n = neighbour[1][0][i]
-        distance = neighbour[0][0][i]
-        product_id = product_inv_mapper[n]
-
+        # append neighbour
         neighbours.append(
             Recommendation(
                 product_id,
@@ -92,8 +99,7 @@ def recommend_products_for_user(
     df1 = ratings_ds[ratings_ds["user_id"] == user_id]
 
     if df1.empty:
-        l.e(f"User with id {user_id} does not exist.")
-        return
+        l.e(f"User with ID {user_id} does not exist.")
 
     # find the product with the highest rating for this user
     product_id = df1[df1["rating"] == max(df1["rating"])]["product_id"].iloc[0]
@@ -109,13 +115,10 @@ def recommend_products_for_user(
     product_title = product_titles.get(product_id, "product-not-found")
 
     if product_title == "product-not-found":
-        l.e(f"Product with id {product_id} not found.")
+        l.e(f"Product with ID {product_id} not found.")
 
     # display recommendations based on similarity
-    l.colored(
+    fgen.show_recommendations(
         f'Since you consume "{product_title}", you might also like (lower is better):',
-        l.MAGENTA,
+        recommendations,
     )
-
-    for r in recommendations:
-        l.colored(f"{r.title} - ({r.distance:.2f})", l.GREEN)

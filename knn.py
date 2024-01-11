@@ -1,6 +1,4 @@
-import numpy as np
 import pandas as pd
-import sklearn as sk
 from pygemstones.util import log as l
 
 from modules import fnc_knn as fnc
