@@ -18,12 +18,6 @@ python3 -m pip install -r requirements.txt
 - KNN Tags - Find similar products with similar tags
 - Hybrid - Find products to user by mixing "Collaborative Filtering" and "Content-Based Filtering"
 
-## TODO
-
-- [x] Implement kNN
-- [ ] Separate into different algorithms
-- [x] Refactor code
-
 ## References
 
 - https://www.geeksforgeeks.org/recommendation-system-in-python/
@@ -36,6 +30,7 @@ python3 -m pip install -r requirements.txt
 - https://www.freecodecamp.org/news/how-to-build-a-movie-recommendation-system-based-on-collaborative-filtering/
 - https://github.com/anilcogalan/Movie_Hybrid_Recommender_Systems
 - https://towardsdatascience.com/how-to-build-a-simple-movie-recommender-system-with-tags-b9ab5cb3b616
+- https://michael-fuchs-python.netlify.app/2020/10/05/recommendation-systems-metadata-based-recommender/
 
 ## License
 
