@@ -122,3 +122,32 @@ def recommend_products_for_user(
         f'Since you consume "{product_title}", you might also like (lower is better):',
         recommendations,
     )
+
+
+# recommend products for a given product
+def recommend_products_for_product(
+    product_id,
+    products_ds,
+    X,
+    product_mapper,
+    product_inv_mapper,
+    k=10,
+):
+    # create a dictionary mapping product ids to their titles
+    product_titles = dict(zip(products_ds["product_id"], products_ds["title"]))
+
+    # find similar products
+    recommendations = find_similar_products(
+        product_id, product_titles, X, k, product_mapper, product_inv_mapper
+    )
+
+    product_title = product_titles.get(product_id, "product-not-found")
+
+    if product_title == "product-not-found":
+        l.e(f"Product with ID {product_id} not found.")
+
+    # display recommendations based on similarity
+    fgen.show_recommendations(
+        f'For product "{product_title}", you might also like (lower is better):',
+        recommendations,
+    )

@@ -68,7 +68,7 @@ X, user_mapper, product_mapper, user_inv_mapper, product_inv_mapper = fnc.create
     ratings_ds
 )
 
-# recommended products
+# recommended products by user
 user_id = 1
 fnc.recommend_products_for_user(
     user_id,
@@ -76,6 +76,17 @@ fnc.recommend_products_for_user(
     products_ds,
     X,
     user_mapper,
+    product_mapper,
+    product_inv_mapper,
+    k=10,
+)
+
+# recommended products by product
+product_id = 2
+fnc.recommend_products_for_product(
+    product_id,
+    products_ds,
+    X,
     product_mapper,
     product_inv_mapper,
     k=10,
