@@ -40,5 +40,5 @@ jobs:
           python3 --version
           python3 -m pip --version
 
-      - name: Run
-        run: python3 main.py
+      - name: Run KNN
+        run: python3 knn.py

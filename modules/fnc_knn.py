@@ -3,11 +3,7 @@ from pygemstones.util import log as l
 from scipy.sparse import csr_matrix
 from sklearn.neighbors import NearestNeighbors
 
-
-class Neighbor:
-    def __init__(self, product_id, distance):
-        self.product_id = product_id
-        self.distance = distance
+from modules.cl_recommendation import Recommendation
 
 
 # create a user-item matrix using scipy's csr_matrix
@@ -33,13 +29,23 @@ def create_matrix(df):
 
 # find similar products based on the input product
 def find_similar_products(
-    product_id, X, k, product_mapper, product_inv_mapper, metric="cosine"
+    product_id,
+    product_titles,
+    X,
+    k,
+    product_mapper,
+    product_inv_mapper,
+    metric="cosine",
 ):
-    neighbour_info = []
+    neighbours = []
 
     product_ind = product_mapper[product_id]
     product_vec = X[product_ind]
-    k += 1
+
+    n_samples = X.shape[0]
+
+    if k > n_samples:
+        k = n_samples - 1
 
     # fit a k-nearest neighbors model
     kNN = NearestNeighbors(n_neighbors=k, algorithm="brute", metric=metric)
@@ -50,12 +56,26 @@ def find_similar_products(
 
     # extract neighbor information
     for i in range(1, k):
+        # product title
+        product_title = product_titles.get(product_id, "product-not-found")
+
+        if product_title == "product-not-found":
+            l.e(f"Product with ID {product_id} not found.")
+
+        # neighbour
         n = neighbour[1][0][i]
         distance = neighbour[0][0][i]
-        neighbour_id = product_inv_mapper[n]
-        neighbour_info.append(Neighbor(neighbour_id, distance))
+        product_id = product_inv_mapper[n]
 
-    return neighbour_info
+        neighbours.append(
+            Recommendation(
+                product_id,
+                product_title,
+                distance,
+            )
+        )
+
+    return neighbours
 
 
 # recommend products for a given user
@@ -72,7 +92,7 @@ def recommend_products_for_user(
     df1 = ratings_ds[ratings_ds["user_id"] == user_id]
 
     if df1.empty:
-        l.e(f"user with id {user_id} does not exist.")
+        l.e(f"User with id {user_id} does not exist.")
         return
 
     # find the product with the highest rating for this user
@@ -82,20 +102,20 @@ def recommend_products_for_user(
     product_titles = dict(zip(products_ds["product_id"], products_ds["title"]))
 
     # find similar products
-    similar_info = find_similar_products(
-        product_id, X, k, product_mapper, product_inv_mapper
+    recommendations = find_similar_products(
+        product_id, product_titles, X, k, product_mapper, product_inv_mapper
     )
 
-    product_title = product_titles.get(product_id, "product not found")
+    product_title = product_titles.get(product_id, "product-not-found")
 
-    if product_title == "product not found":
-        l.e(f"product with id {product_id} not found.")
+    if product_title == "product-not-found":
+        l.e(f"Product with id {product_id} not found.")
 
     # display recommendations based on similarity
-    l.d(f"since you consume {product_title}, you might also like (lower is better):")
+    l.colored(
+        f'Since you consume "{product_title}", you might also like (lower is better):',
+        l.MAGENTA,
+    )
 
-    for info in similar_info:
-        neighbour_id = info.product_id
-        distance = info.distance
-        neighbour_title = product_titles.get(neighbour_id, "product not found")
-        l.colored(f"{neighbour_title} ({distance:.2f})", l.GREEN)
+    for r in recommendations:
+        l.colored(f"{r.title} - ({r.distance:.2f})", l.GREEN)

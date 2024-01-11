@@ -3,7 +3,7 @@ import pandas as pd
 import sklearn as sk
 from pygemstones.util import log as l
 
-from modules import functions as fnc
+from modules import fnc_knn as fnc
 
 # general
 is_debug = True
@@ -80,5 +80,5 @@ fnc.recommend_products_for_user(
     user_mapper,
     product_mapper,
     product_inv_mapper,
-    k=2,
+    k=10,
 )
