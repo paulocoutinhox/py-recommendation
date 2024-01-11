@@ -4,12 +4,19 @@
 
 Simple recommendation systems written in Python.
 
-## How to use
+## Setup
+
+Eecute on terminal:
 
 ```
 python3 -m pip install -r requirements.txt
-python3 main.py
 ```
+
+## Algorithms
+
+- KNN Rating - Find similar products with similar ratings
+- KNN Tags - Find similar products with similar tags
+- Hybrid - Find products to user by mixing "Collaborative Filtering" and "Content-Based Filtering"
 
 ## TODO
 
@@ -27,6 +34,8 @@ python3 main.py
 - https://www.analyticsvidhya.com/blog/2018/06/comprehensive-guide-recommendation-engine-python/
 - https://sunscrapers.com/blog/developing-recommendation-system-with-python/
 - https://www.freecodecamp.org/news/how-to-build-a-movie-recommendation-system-based-on-collaborative-filtering/
+- https://github.com/anilcogalan/Movie_Hybrid_Recommender_Systems
+- https://towardsdatascience.com/how-to-build-a-simple-movie-recommender-system-with-tags-b9ab5cb3b616
 
 ## License
 

@@ -40,5 +40,11 @@ jobs:
           python3 --version
           python3 -m pip --version
 
-      - name: Run KNN
-        run: python3 knn.py
+      - name: Run KNN Ratings
+        run: python3 knn-ratings.py
+
+      - name: Run KNN Tags
+        run: python3 knn-tags.py
+
+      - name: Run Hybrid
+        run: python3 hybrid.py

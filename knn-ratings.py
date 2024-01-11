@@ -1,7 +1,7 @@
 import pandas as pd
 from pygemstones.util import log as l
 
-from modules import fnc_knn as fnc
+from modules import fnc_knn_ratings as fnc
 
 # general
 is_debug = True
