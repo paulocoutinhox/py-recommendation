@@ -44,6 +44,13 @@ python3 -m pip install -r requirements.txt
 - https://redis.com/blog/real-time-product-recommendation-docarray/
 - https://builtin.com/data-science/recommender-systems
 - https://www.nvidia.com/en-us/glossary/recommendation-system/
+- https://www.algolia.com/products/recommendations
+- https://gorse.io/
+- https://www.tensorflow.org/resources/recommendation-systems
+- https://www.youtube.com/watch?v=BthUPVwA59s&list=PLQY2H8rRoyvy2MiyUBz5RWZr5MPFkV3qz&index=2
+- https://maori.geek.nz/list-of-recommender-systems-4526f7c68964
+- https://medium.com/swlh/recommendation-system-implementation-with-deep-learning-and-pytorch-a03ee84a96f4
+- https://www.youtube.com/watch?v=Wj-nkk7dFS8
 
 ## License
 
