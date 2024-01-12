@@ -31,6 +31,7 @@ python3 -m pip install -r requirements.txt
 - https://github.com/anilcogalan/Movie_Hybrid_Recommender_Systems
 - https://towardsdatascience.com/how-to-build-a-simple-movie-recommender-system-with-tags-b9ab5cb3b616
 - https://michael-fuchs-python.netlify.app/2020/10/05/recommendation-systems-metadata-based-recommender/
+- https://blog.somostera.com/data-science/sistemas-de-recomendacao
 
 ## License
 
