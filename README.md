@@ -51,6 +51,8 @@ python3 -m pip install -r requirements.txt
 - https://maori.geek.nz/list-of-recommender-systems-4526f7c68964
 - https://medium.com/swlh/recommendation-system-implementation-with-deep-learning-and-pytorch-a03ee84a96f4
 - https://www.youtube.com/watch?v=Wj-nkk7dFS8
+- https://mahout.apache.org/
+- https://spark.apache.org/
 
 ## License
 
