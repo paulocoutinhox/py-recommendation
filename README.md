@@ -18,6 +18,7 @@ python3 -m pip install -r requirements.txt
 - KNN Tags - Find similar products with similar tags
 - Hybrid - Find products to user by mixing "Collaborative Filtering" and "Content-Based Filtering"
 - Similarity by Title, Category and Tags - Find products to user or similar produtos using more complex product data like title, category as tags (binary matrix)
+- Spark - Use pyspark to recommend products to user based on tags similarity.
 
 ## References
 
@@ -53,6 +54,8 @@ python3 -m pip install -r requirements.txt
 - https://www.youtube.com/watch?v=Wj-nkk7dFS8
 - https://mahout.apache.org/
 - https://spark.apache.org/
+- https://medium.com/@beepabose/content-based-filtering-for-book-recommendation-using-pyspark-4369c4cbe006
+- https://www.geeksforgeeks.org/recommender-system-using-pyspark-python/
 
 ## License
 
