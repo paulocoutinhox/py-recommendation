@@ -17,6 +17,7 @@ python3 -m pip install -r requirements.txt
 - KNN Rating - Find similar products with similar ratings
 - KNN Tags - Find similar products with similar tags
 - Hybrid - Find products to user by mixing "Collaborative Filtering" and "Content-Based Filtering"
+- Similarity by Title, Category and Tags - Find products to user or similar produtos using more complex product data like title, category as tags (binary matrix)
 
 ## References
 
@@ -32,6 +33,17 @@ python3 -m pip install -r requirements.txt
 - https://towardsdatascience.com/how-to-build-a-simple-movie-recommender-system-with-tags-b9ab5cb3b616
 - https://michael-fuchs-python.netlify.app/2020/10/05/recommendation-systems-metadata-based-recommender/
 - https://blog.somostera.com/data-science/sistemas-de-recomendacao
+- https://medium.com/mlearning-ai/using-customer-and-product-features-in-recommender-systems-2734258873cf
+- https://towardsdatascience.com/machine-learning-for-building-recommender-system-in-python-9e4922dd7e97
+- https://blog.stackademic.com/recommender-systems-with-python-code-examples-8d2ed0995f9a
+- https://blog.cambridgespark.com/nowadays-recommender-systems-are-used-to-personalize-your-experience-on-the-web-telling-you-what-120f39b89c3c
+- https://netflixtechblog.com/netflix-recommendations-beyond-the-5-stars-part-1-55838468f429
+- http://buzzard.ups.edu/courses/2014spring/420projects/math420-UPS-spring-2014-gower-netflix-SVD.pdf
+- https://www.linkedin.com/pulse/building-e-commerce-recommendation-system-using-knn-python-patriwala/
+- https://www.analyticsvidhya.com/blog/2022/08/building-a-content-based-recommendation-system/
+- https://redis.com/blog/real-time-product-recommendation-docarray/
+- https://builtin.com/data-science/recommender-systems
+- https://www.nvidia.com/en-us/glossary/recommendation-system/
 
 ## License
 

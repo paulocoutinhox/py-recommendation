@@ -48,3 +48,6 @@ jobs:
 
       - name: Run Hybrid
         run: python3 hybrid.py
+
+      - name: Run Similarity by TC Tag
+        run: python3 sim-tc-tag.py
